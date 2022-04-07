@@ -3,7 +3,8 @@ import { IconContext } from "react-icons";
 import { FaPlus, FaMinus, FaReply } from "react-icons/fa";
 import ReplyContainer from "../container/reply-container";
 
-export default function Comment() {
+export default function Comment({ comment }) {
+  const user = comment.user;
   return (
     <div className="d-flex  flex-column align-items-end">
       <div className="w-100 mb-3 row m-0 comment p-3">
@@ -12,7 +13,7 @@ export default function Comment() {
             <IconContext.Provider value={{ size: 13, className: "vote-icon" }}>
               <FaPlus />
 
-              <div className="my-2 vote-count">12</div>
+              <div className="my-2 vote-count">{comment.score}</div>
 
               <FaMinus />
             </IconContext.Provider>
@@ -21,14 +22,10 @@ export default function Comment() {
         <div className="col-11 ps-3 pe-0">
           <div className="d-flex justify-content-between">
             <div className="d-flex justify-content-center align-items-center">
-              <Image
-                src="/src/images/avatars/image-amyrobson.png"
-                width="30"
-                height="30"
-              />
+              <Image src={user.image.png} width="30" height="30" />
 
-              <div className="me-1 ms-3 user-name">Zar Ne</div>
-              <div className="mx-2 posted-date">23 week ago</div>
+              <div className="me-1 ms-3 user-name">{user.username}</div>
+              <div className="mx-2 posted-date">{comment.createdAt}</div>
             </div>
             <div className="rp-btn">
               <IconContext.Provider
@@ -39,14 +36,12 @@ export default function Comment() {
             </div>
           </div>
 
-          <div className="pt-2 comment-text ">
-            Lorem ipsumsdafsdffdjjfiru juirhjguiiiiiiiiiiii iii
-            iiiiiiiiiiiiiiiiii jhjjtr5hfu5 iiiiiiiiiiii iiiiis8rrrrrrrrrrrri
-            opkggggggggggggggggggggggggggggggggggggdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-          </div>
+          <div className="pt-2 comment-text ">{comment.content}</div>
         </div>
       </div>
-      <ReplyContainer />
+      {comment.replies.length !== 0 && (
+        <ReplyContainer replyComments={comment.replies} />
+      )}
     </div>
   );
 }
