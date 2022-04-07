@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { IconContext } from "react-icons";
 import { FaPlus, FaMinus, FaReply } from "react-icons/fa";
-import ReplyContainer from "../container/reply-container";
 
-export default function Comment() {
+export default function Reply() {
   return (
-    <div className="d-flex  flex-column align-items-end">
-      <div className="w-100 mb-3 row m-0 comment p-3">
+    <div className="d-flex mb-3 flex-column align-items-end">
+      <div className="w-100 row m-0 comment p-3">
         <div className="d-flex justify-content-center align-items-start p-2 pt-0 col-1">
           <div className="d-flex flex-column justify-content-between vote-container">
             <IconContext.Provider value={{ size: 13, className: "vote-icon" }}>
@@ -46,7 +45,6 @@ export default function Comment() {
           </div>
         </div>
       </div>
-      <ReplyContainer />
     </div>
   );
 }

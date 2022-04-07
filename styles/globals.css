@@ -78,6 +78,8 @@ cursor:pointer;
   cursor: pointer;
   color:hsl(238, 40%, 52%);
   font-weight: 500;
+  font-size: 16px;
+  
 }
 .rp-icon{
 fill:hsl(238, 40%, 52%);
@@ -101,5 +103,38 @@ fill:hsl(239, 37%, 37%);
   }
 .comment-text{
   color:  hsl(211, 10%, 45%);
-  
+  word-break: break-all;  
+  font-size: 15px;}
+.reply-comment-container{
+  border-left: 3px solid hsl(223, 19%, 93%);
+  width: 94%;padding-left: 30px;
+}
+.input{
+  border-radius: 10px;
+  background-color: var(--secondary-main);
+}
+.input button{
+  border: 0px;
+  border-radius: 8px;
+  height:48px;
+  font-weight: 600;
+  color: var(--background-main);
+  background-color: hsl(238, 40%, 52%);
+}
+.input button:hover{
+  background-color: hsl(238, 37%, 34%);
+}
+.input button:active{
+  background-color: hsl(238, 31%, 67%);
+
+}
+.input textarea{
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid  hsl(223, 19%, 93%);
+}
+.input textarea:focus-visible{
+  border: 1px solid    hsl(223, 3%, 51%);
+  outline: none;
+
 }
