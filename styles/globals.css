@@ -4,7 +4,7 @@
 }
 
 :root{
-  --background-main : hsl(228, 33%, 97%);
+  --background-main : hsl(223, 19%, 93%);
   --secondary-main: hsl(0, 0%, 100%);
 }
 
@@ -112,6 +112,7 @@ fill:hsl(239, 37%, 37%);
 .input{
   border-radius: 10px;
   background-color: var(--secondary-main);
+  bottom: 0px;
 }
 .input button{
   border: 0px;
