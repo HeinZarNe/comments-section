@@ -2,21 +2,31 @@
 import { data } from "../../data/data";
 let comment = data.comments;
 export default function handler(req, res) {
+  const vote = (thisComment) => {
+    if (req.body.vote == "up") {
+      ++thisComment.score;
+    } else if (req.body.vote == "down" && thisComment.score > 0) {
+      --thisComment.score;
+    }
+  };
+
   if (req.method == "POST") {
     if (req.body.vote) {
       let id = req.body.id;
 
-      console.log("yes");
-      comment.map((c) => {
-        if (c["replies"].length > 0) {
-          const currentComment = c["replies"].find((c) => c.id == id);
-          if (req.body.vote == "up") {
-            ++currentComment.score;
-          } else if (req.body.vote == "down" && currentComment.score > 0) {
-            --currentComment.score;
+      let mainComment = comment.find((c) => c.id == id);
+
+      if (mainComment == undefined) {
+        comment.map((c) => {
+          if (c["replies"].length > 0) {
+            const currentComment = c["replies"].find((c) => c.id == id);
+            vote(currentComment);
           }
-        }
-      });
+        });
+      } else {
+        vote(mainComment);
+      }
+
       return res.status(200).json(comment);
     } else if (req.body.post) {
       let id = Date.now();

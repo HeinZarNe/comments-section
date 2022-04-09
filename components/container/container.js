@@ -37,7 +37,6 @@ export default function Container() {
   };
 
   const handlePost = async (comment) => {
-    console.log(comment);
     let response = await fetch("api/comments", {
       method: "POST",
       body: JSON.stringify({ comment, post: "post" }),
