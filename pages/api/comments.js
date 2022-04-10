@@ -11,6 +11,8 @@ export default function handler(req, res) {
   };
 
   if (req.method == "POST") {
+    comment.sort((a, b) => b.score - a.score);
+
     if (req.body.vote) {
       let id = req.body.id;
 
@@ -47,5 +49,5 @@ export default function handler(req, res) {
       comment.push(newPost);
     }
   }
-  return res.status(200).json(comment);
+  return res.status(200).json(comment.sort((a, b) => b.score - a.score));
 }

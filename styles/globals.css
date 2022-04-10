@@ -54,11 +54,14 @@ cursor:pointer;
   background-color: #eef0ff;
 
 }
-
+.clicked-icon{
+  fill : rgb(193, 29, 56) !important;
+}
 .vote-count{
   cursor:default;
   font-weight: 500;
   color:hsl(238, 40%, 52%) ;
+  user-select: none;
 }
 .vote-count:hover{
   color:hsl(237, 46%, 26%) ;
