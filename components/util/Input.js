@@ -1,7 +1,15 @@
 import Image from "next/image";
-import { useState } from "react";
-export default function Input({ onPost, user }) {
+import { useState, useEffect } from "react";
+
+export default function Input({ onPostMain, onPostReply, user, reply }) {
   const [text, setText] = useState("");
+
+  useEffect(
+    (_) => {
+      reply && setText(`@${reply.user.username} `);
+    },
+    [reply]
+  );
 
   return (
     user && (
@@ -22,7 +30,12 @@ export default function Input({ onPost, user }) {
           <button
             className="w-100"
             onClick={(_) => {
-              onPost(text);
+              if (reply) {
+                onPostReply(text);
+              } else {
+                onPostMain(text);
+              }
+
               setText("");
             }}
           >

@@ -105,7 +105,7 @@ fill:hsl(239, 37%, 37%);
   fill:hsl(237, 57%, 72%);
   }
 .comment-text{
-  color:  hsl(211, 10%, 45%);
+  color:  hsl(210, 10%, 30%);
   word-break: break-all;  
   font-size: 15px;}
 .reply-comment-container{
@@ -142,3 +142,67 @@ fill:hsl(239, 37%, 37%);
   outline: none;
 
 }
+.you-tag{
+  background-color:  hsl(238, 40%, 52%);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+.edit-btn{
+  cursor: pointer;
+  color:hsl(238, 40%, 52%);
+  font-weight: 500;
+  font-size: 16px;
+  
+}
+.edit-icon{
+fill:hsl(238, 40%, 52%)
+}
+
+.edit-btn:hover .edit-icon{
+
+fill:hsl(239, 37%, 37%);
+
+}
+.edit-btn:hover{
+  color:hsl(239, 37%, 37%);
+}
+
+.edit-btn:active{
+  color:hsl(237, 57%, 72%);
+}
+.edit-btn:active .edit-icon{
+
+  fill:hsl(237, 57%, 72%);
+  }
+
+  .delete-btn{
+    cursor: pointer;
+    color:  hsl(358, 79%, 66%);
+    font-weight: 500;
+    font-size: 16px;
+    
+  }
+  .delete-icon{
+  fill:  hsl(358, 79%, 66%)
+  }
+  
+  .delete-btn:hover .delete-icon{
+  
+  fill: hsl(358, 63%, 53%);
+  
+  }
+  .delete-btn:hover{
+    color: hsl(358, 63%, 53%);
+
+  }
+  
+  .delete-btn:active{
+    color: hsl(357, 100%, 86%)
+
+  }
+  .delete-btn:active .delete-icon{
+  
+    fill:  hsl(357, 100%, 86%)
+
+    }

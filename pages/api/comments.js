@@ -1,5 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { data } from "../../data/data";
+import moment from "moment";
+import { FaRegWindowClose } from "react-icons/fa";
+moment().format();
 let comment = data.comments;
 export default function handler(req, res) {
   const vote = (thisComment) => {
@@ -32,21 +35,45 @@ export default function handler(req, res) {
       return res.status(200).json(comment);
     } else if (req.body.post) {
       let id = Date.now();
-      const newPost = {
-        id,
-        content: String(req.body.comment),
-        createdAt: "1 month ago",
-        score: 0,
-        user: {
-          image: {
-            png: data.currentUser.image.png,
-            webp: data.currentUser.image.webp,
+
+      if (req.body.to == "main") {
+        const newPost = {
+          id,
+          content: String(req.body.comment),
+          createdAt: "just now",
+          score: 0,
+          user: {
+            image: {
+              png: data.currentUser.image.png,
+              webp: data.currentUser.image.webp,
+            },
+            username: data.currentUser.username,
           },
-          username: data.currentUser.username,
-        },
-        replies: [],
-      };
-      comment.push(newPost);
+          replies: [],
+        };
+        comment.push(newPost);
+      } else if (req.body.to == "replies") {
+        let currentComment = comment.find((c) =>
+          c.replies.find((c) => c.id == req.body.id)
+        );
+        if (!currentComment) {
+          currentComment = comment.find((c) => c.id == req.body.id);
+        }
+        const newPost = {
+          id,
+          content: String(req.body.comment),
+          createdAt: "just now",
+          score: 0,
+          user: {
+            image: {
+              png: data.currentUser.image.png,
+              webp: data.currentUser.image.webp,
+            },
+            username: data.currentUser.username,
+          },
+        };
+        currentComment.replies.push(newPost);
+      }
     }
   }
   return res.status(200).json(comment.sort((a, b) => b.score - a.score));

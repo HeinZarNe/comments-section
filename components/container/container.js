@@ -3,6 +3,8 @@ import Input from "../util/Input";
 import { useState, useEffect } from "react";
 
 export default function Container() {
+  const [reply, setReply] = useState(null);
+  const [replyId, setReplyId] = useState(null);
   useEffect((_) => {
     fetchUserData();
 
@@ -36,14 +38,26 @@ export default function Container() {
     fetchComments();
   };
 
-  const handlePost = async (comment) => {
+  const handlePostMain = async (comment) => {
     let response = await fetch("api/comments", {
       method: "POST",
-      body: JSON.stringify({ comment, post: "post" }),
+      body: JSON.stringify({ comment, post: "post", to: "main" }),
       headers: {
         "Content-Type": "application/json",
       },
     });
+    fetchComments();
+  };
+  const handlePostReply = async (comment) => {
+    let id = replyId;
+    let response = await fetch("api/comments", {
+      method: "POST",
+      body: JSON.stringify({ id, comment, post: "post", to: "replies" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setReply(null);
     fetchComments();
   };
 
@@ -52,18 +66,36 @@ export default function Container() {
     const data = await res.json();
     setUser(data);
   };
+  const handleReply = (replyCommentId) => {
+    setReplyId(replyCommentId);
+    let mainComment = comments.find((c) => c.id == replyCommentId);
 
+    if (mainComment == undefined) {
+      mainComment = comments.find((c) =>
+        c.replies.find((c) => c.id == replyCommentId)
+      );
+      mainComment = mainComment.replies.find((c) => c.id == replyCommentId);
+    }
+    setReply(mainComment);
+  };
   return (
     <div className="comments-container d-flex  justify-content-center align-items-center py-3 flex-column">
       {comments.map((comment) => (
         <Comment
+          user={user}
           key={comment.id}
           comment={comment}
           onDownvote={handleDownvote}
           onUpvote={handleUpvote}
+          onReply={handleReply}
         />
       ))}
-      <Input onPost={handlePost} user={user} />
+      <Input
+        onPostMain={handlePostMain}
+        onPostReply={handlePostReply}
+        user={user}
+        reply={reply}
+      />
     </div>
   );
 }
