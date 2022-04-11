@@ -11,14 +11,24 @@ export default function Reply({
   handleReply,
   user,
   onDelete,
+  onUpdate,
 }) {
   const [show, setShow] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [editedText, setEditedText] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [isUpCLicked, setIsUpClicked] = useState(false);
   const [isDownClicked, setIsDownClicked] = useState(false);
-
+  const handleEdit = () => {
+    setEdit(true);
+  };
+  const handleUpdate = (id) => {
+    onUpdate(id, editedText);
+    setEdit(false);
+    setEditedText("");
+  };
   return (
     <>
       <Modal
@@ -121,7 +131,7 @@ export default function Reply({
                 )}
                 <div className="mx-2 posted-date">{comment.createdAt}</div>
               </div>
-              {user.username == comment.user.username ? (
+              {!edit && user.username == comment.user.username ? (
                 <div className="option-btns d-flex justify-content-center align-items-center">
                   <IconContext.Provider
                     value={{ size: 12, className: "delete-icon mb-1 " }}
@@ -137,26 +147,49 @@ export default function Reply({
                   <IconContext.Provider
                     value={{ size: 12, className: "edit-icon mb-1 " }}
                   >
-                    <div className="edit-btn">
+                    <div className="edit-btn" onClick={(_) => handleEdit()}>
                       <FaPen /> Edit
                     </div>
                   </IconContext.Provider>
                 </div>
               ) : (
-                <div
-                  className="rp-btn"
-                  onClick={(_) => handleReply(comment.id)}
-                >
-                  <IconContext.Provider
-                    value={{ className: "rp-icon me-1", size: 13 }}
+                !edit && (
+                  <div
+                    className="rp-btn"
+                    onClick={(_) => handleReply(comment.id)}
                   >
-                    <FaReply /> Reply
-                  </IconContext.Provider>
-                </div>
+                    <IconContext.Provider
+                      value={{ className: "rp-icon me-1", size: 13 }}
+                    >
+                      <FaReply /> Reply
+                    </IconContext.Provider>
+                  </div>
+                )
               )}
             </div>
 
-            <div className="pt-2 comment-text ">{comment.content}</div>
+            <div className="pt-2 comment-text ">
+              {edit && user.username == comment.user.username ? (
+                <textarea
+                  className="border border-1 border-secondary rounded-2 w-100"
+                  rows="4"
+                  value={editedText}
+                  onChange={(e) => setEditedText(e.currentTarget.value)}
+                />
+              ) : (
+                comment.content
+              )}
+            </div>
+            {edit && user.username == comment.user.username && (
+              <div className="w-100 d-flex justify-content-end align-items-center">
+                <button
+                  className=" py-2 update-btn mt-1 rounded-2 border-0"
+                  onClick={(_) => handleUpdate(comment.id)}
+                >
+                  UPDATE
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

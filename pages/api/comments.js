@@ -91,12 +91,25 @@ export default function handler(req, res) {
       const replyIndex = mainComment.replies.indexOf(commentToDelete);
 
       mainComment.replies.splice(replyIndex, 1);
-      console.log("array", mainComment);
     } else {
       comment.splice(index, 1);
     }
-    console.log("index", index);
     return res.status(200).json(comment);
+  } else if (req.method == "PUT") {
+    let id = req.body.id;
+
+    let mainComment = comment.find((c) => c.id == id);
+
+    if (mainComment == undefined) {
+      comment.map((c) => {
+        if (c["replies"].length > 0) {
+          const currentComment = c["replies"].find((c) => c.id == id);
+          currentComment.content = req.body.text;
+        }
+      });
+    } else {
+      mainComment.content = req.body.text;
+    }
   }
   return res.status(200).json(comment.sort((a, b) => b.score - a.score));
 }

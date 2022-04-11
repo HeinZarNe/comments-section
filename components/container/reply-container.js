@@ -7,6 +7,7 @@ export default function ReplyContainer({
   onReply,
   user,
   onDelete,
+  onUpdate,
 }) {
   return (
     <div className="d-flex reply-comment-container justify-content-end  flex-column ">
@@ -19,6 +20,7 @@ export default function ReplyContainer({
           handleReply={onReply}
           user={user}
           onDelete={onDelete}
+          onUpdate={onUpdate}
         />
       ))}
     </div>

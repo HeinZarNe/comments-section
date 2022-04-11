@@ -244,3 +244,9 @@ padding:10px 25px;
   color: hsl(212, 24%, 26%);
   font-size:25px
 }
+.update-btn{
+  width: 90px !important;
+  background-color: hsl(238, 40%, 52%);
+font-weight: 600;
+  color: white;
+}

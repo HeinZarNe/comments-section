@@ -39,7 +39,7 @@ export default function Input({ onPostMain, onPostReply, user, reply }) {
               setText("");
             }}
           >
-            Send
+            SEND
           </button>
         </div>
       </div>
