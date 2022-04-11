@@ -3,6 +3,7 @@ import { IconContext } from "react-icons";
 import { FaPlus, FaMinus, FaReply, FaPen, FaTrash } from "react-icons/fa";
 import ReplyContainer from "../container/reply-container";
 import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 export default function Comment({
   comment,
@@ -10,15 +11,51 @@ export default function Comment({
   onDownvote,
   onReply,
   user,
+  onDelete,
 }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [isUpCLicked, setIsUpClicked] = useState(false);
   const [isDownClicked, setIsDownClicked] = useState(false);
 
   const commenter = comment.user;
-  console.log("user", user.username);
-  console.log("commenter", commenter.username);
+
   return (
     <div className="d-flex  flex-column align-items-end w-100">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <span className="modal-title">Delete comment</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this comment? This will remove the
+          comment and can't be undone.
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="row justify-content-around align-items-center w-100">
+            <button onClick={handleClose} className="col-5 cancle-btn">
+              <span>NO, CANCLE</span>
+            </button>
+            <button
+              className="confirm-btn col-5"
+              onClick={(_) => {
+                onDelete(comment.id);
+                handleClose();
+              }}
+            >
+              <span>YES, DELETE</span>
+            </button>
+          </div>
+        </Modal.Footer>
+      </Modal>
       <div className="w-100 mb-3 row m-0 comment p-3">
         <div className="d-flex justify-content-center align-items-start p-2 pt-0 col-1">
           <div className="d-flex flex-column justify-content-between vote-container align-items-center">
@@ -85,7 +122,10 @@ export default function Comment({
                 <IconContext.Provider
                   value={{ size: 12, className: "delete-icon mb-1 " }}
                 >
-                  <div className="delete-btn mx-2">
+                  <div
+                    className="delete-btn mx-2"
+                    onClick={(_) => handleShow()}
+                  >
                     <FaTrash /> Delete
                   </div>{" "}
                 </IconContext.Provider>
@@ -120,6 +160,7 @@ export default function Comment({
           onDownvote={onDownvote}
           onReply={onReply}
           user={user}
+          onDelete={onDelete}
         />
       )}
     </div>

@@ -1,8 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { data } from "../../data/data";
 import moment from "moment";
-import { FaRegWindowClose } from "react-icons/fa";
-moment().format();
+
 let comment = data.comments;
 export default function handler(req, res) {
   const vote = (thisComment) => {
@@ -75,6 +74,29 @@ export default function handler(req, res) {
         currentComment.replies.push(newPost);
       }
     }
+  } else if (req.method == "DELETE") {
+    let commentToDelete = comment.find((c) => c.id == req.body);
+    if (commentToDelete == undefined) {
+      comment.map((c) => {
+        if (c["replies"].length > 0) {
+          commentToDelete = c["replies"].find((c) => c.id == req.body);
+        }
+      });
+    }
+    let index = comment.indexOf(commentToDelete);
+    if (index == -1) {
+      const mainComment = comment.find((c) =>
+        c.replies.find((c) => c.id == req.body)
+      );
+      const replyIndex = mainComment.replies.indexOf(commentToDelete);
+
+      mainComment.replies.splice(replyIndex, 1);
+      console.log("array", mainComment);
+    } else {
+      comment.splice(index, 1);
+    }
+    console.log("index", index);
+    return res.status(200).json(comment);
   }
   return res.status(200).json(comment.sort((a, b) => b.score - a.score));
 }

@@ -78,6 +78,13 @@ export default function Container() {
     }
     setReply(mainComment);
   };
+  const handleDelete = async (id) => {
+    const response = await fetch("/api/comments", {
+      method: "DELETE",
+      body: id,
+    });
+    fetchComments();
+  };
   return (
     <div className="comments-container d-flex  justify-content-center align-items-center py-3 flex-column">
       {comments.map((comment) => (
@@ -88,6 +95,7 @@ export default function Container() {
           onDownvote={handleDownvote}
           onUpvote={handleUpvote}
           onReply={handleReply}
+          onDelete={handleDelete}
         />
       ))}
       <Input
