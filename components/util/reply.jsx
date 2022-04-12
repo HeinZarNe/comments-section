@@ -44,7 +44,7 @@ export default function Reply({
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to delete this comment? This will remove the
-          comment and can't be undone.
+          comment and can&#39;t be undone.
         </Modal.Body>
         <Modal.Footer>
           <div className="row justify-content-around align-items-center w-100">

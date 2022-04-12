@@ -48,7 +48,7 @@ export default function Comment({
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to delete this comment? This will remove the
-          comment and can't be undone.
+          comment and can&#39;t be undone.
         </Modal.Body>
         <Modal.Footer>
           <div className="row justify-content-around align-items-center w-100">
@@ -122,7 +122,12 @@ export default function Comment({
         <div className="mid-div ">
           <div className="d-flex justify-content-between">
             <div className="d-flex justify-content-center align-items-center">
-              <Image src={commenter.image.png} width="30" height="30" />
+              <Image
+                src={commenter.image.png}
+                alt="profile"
+                width="30"
+                height="30"
+              />
               <div className="me-1 ms-3 user-name">{commenter.username}</div>
               {user.username == commenter.username && (
                 <div className="you-tag px-1 rounded-2  ">you</div>
