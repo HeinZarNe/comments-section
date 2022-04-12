@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
-*{
-  font-family: 'Rubik', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap");
+* {
+  font-family: "Rubik", sans-serif;
 }
 
-:root{
-  --background-main : hsl(223, 19%, 93%);
+:root {
+  --background-main: hsl(223, 19%, 93%);
   --secondary-main: hsl(0, 0%, 100%);
 }
 
@@ -12,8 +12,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--background-main)
-  }
+  background-color: var(--background-main);
+}
 
 a {
   color: inherit;
@@ -23,230 +23,276 @@ a {
 * {
   box-sizing: border-box;
 }
-.index{
+.index {
   background-color: var(--background-main);
-
 }
-.comments-container{
+.comments-container {
   width: 50%;
 }
-.comment{
+@media only screen and (max-width: 900px) {
+  .comments-container {
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .comments-container {
+    width: 100%;
+    padding: 10px;
+  }
+}
+.comment {
   background-color: var(--secondary-main);
   border-radius: 10px;
 }
-.vote-icon{
-margin-left: 2px;
-cursor:pointer;
-  fill: hsl(239, 57%, 85%)
+.vote-icon {
+  margin-left: 2px;
+  cursor: pointer;
+  fill: hsl(239, 57%, 85%);
 }
-.vote-icon:hover{
-  fill: hsl(240, 11%, 49%)
+.vote-icon:hover {
+  fill: hsl(240, 11%, 49%);
 }
-.vote-icon:active{
-  fill: hsl(240, 62%, 85%)
+.vote-icon:active {
+  fill: hsl(240, 62%, 85%);
 }
-.vote-container{
+.vote-container {
   background-color: var(--background-main);
   border-radius: 10px;
   padding: 10px;
+  flex-direction: column;
 }
-.vote-container:hover{
+.vote-container:hover {
   background-color: #eef0ff;
-
 }
-.clicked-icon{
-  fill : rgb(193, 29, 56) !important;
+.clicked-icon {
+  fill: rgb(193, 29, 56) !important;
 }
-.vote-count{
-  cursor:default;
+.vote-count {
+  cursor: default;
   font-weight: 500;
-  color:hsl(238, 40%, 52%) ;
+  color: hsl(238, 40%, 52%);
   user-select: none;
 }
-.vote-count:hover{
-  color:hsl(237, 46%, 26%) ;
+.vote-count:hover {
+  color: hsl(237, 46%, 26%);
 }
-.user-name{
-  color:  hsl(212, 24%, 26%);
+.user-name {
+  color: hsl(212, 24%, 26%);
   font-weight: 500;
   font-size: 15px;
 }
-.posted-date{
-  color:  hsl(211, 10%, 45%);
+.posted-date {
+  color: hsl(211, 10%, 45%);
 
   font-size: 13px;
   font-weight: 300;
 }
-.rp-btn{
+.rp-btn {
   cursor: pointer;
-  color:hsl(238, 40%, 52%);
+  color: hsl(238, 40%, 52%);
   font-weight: 500;
   font-size: 16px;
-  
 }
-.rp-icon{
-fill:hsl(238, 40%, 52%);
-}
-
-.rp-btn:hover .rp-icon{
-
-fill:hsl(239, 37%, 37%);
-
-}
-.rp-btn:hover{
-  color:hsl(239, 37%, 37%);
+.rp-icon {
+  fill: hsl(238, 40%, 52%);
 }
 
-.rp-btn:active{
-  color:hsl(237, 57%, 72%);
+.rp-btn:hover .rp-icon {
+  fill: hsl(239, 37%, 37%);
 }
-.rp-btn:active .rp-icon{
+.rp-btn:hover {
+  color: hsl(239, 37%, 37%);
+}
 
-  fill:hsl(237, 57%, 72%);
-  }
-.comment-text{
-  color:  hsl(210, 10%, 30%);
-  word-break: break-all;  
-  font-size: 15px;}
-.reply-comment-container{
-  border-left: 3px solid hsl(223, 19%, 93%);
-  width: 94%;padding-left: 30px;
+.rp-btn:active {
+  color: hsl(237, 57%, 72%);
 }
-.input{
+.rp-btn:active .rp-icon {
+  fill: hsl(237, 57%, 72%);
+}
+.comment-text {
+  color: hsl(210, 10%, 30%);
+  word-break: break-word;
+  font-size: 15px;
+}
+.reply-comment-container {
+  border-left: 3px solid hsl(240, 2%, 81%);
+  width: 97%;
+  padding-left: 10px;
+}
+.input {
   border-radius: 10px;
   background-color: var(--secondary-main);
   bottom: 0px;
 }
-.input button{
+.input button {
   border: 0px;
   border-radius: 8px;
-  height:48px;
+  height: 48px;
   font-weight: 600;
   color: var(--background-main);
   background-color: hsl(238, 40%, 52%);
 }
-.input button:hover{
+.input button:hover {
   background-color: hsl(238, 37%, 34%);
 }
-.input button:active{
+.input button:active {
   background-color: hsl(238, 31%, 67%);
-
 }
-.input textarea{
+.input textarea {
   font-size: 15px;
   border-radius: 5px;
-  border: 1px solid  hsl(223, 19%, 93%);
+  border: 1px solid hsl(223, 19%, 93%);
 }
-.input textarea:focus-visible{
-  border: 1px solid    hsl(223, 3%, 51%);
+.input textarea:focus-visible {
+  border: 1px solid hsl(223, 3%, 51%);
   outline: none;
-
 }
-.you-tag{
-  background-color:  hsl(238, 40%, 52%);
+.you-tag {
+  background-color: hsl(238, 40%, 52%);
   color: white;
   font-size: 12px;
   font-weight: 500;
 }
-.edit-btn{
+.edit-btn {
   cursor: pointer;
-  color:hsl(238, 40%, 52%);
+  color: hsl(238, 40%, 52%);
   font-weight: 500;
   font-size: 16px;
-  
 }
-.edit-icon{
-fill:hsl(238, 40%, 52%)
-}
-
-.edit-btn:hover .edit-icon{
-
-fill:hsl(239, 37%, 37%);
-
-}
-.edit-btn:hover{
-  color:hsl(239, 37%, 37%);
+.edit-icon {
+  fill: hsl(238, 40%, 52%);
 }
 
-.edit-btn:active{
-  color:hsl(237, 57%, 72%);
+.edit-btn:hover .edit-icon {
+  fill: hsl(239, 37%, 37%);
 }
-.edit-btn:active .edit-icon{
+.edit-btn:hover {
+  color: hsl(239, 37%, 37%);
+}
 
-  fill:hsl(237, 57%, 72%);
-  }
+.edit-btn:active {
+  color: hsl(237, 57%, 72%);
+}
+.edit-btn:active .edit-icon {
+  fill: hsl(237, 57%, 72%);
+}
 
-  .delete-btn{
-    cursor: pointer;
-    color:  hsl(358, 79%, 66%);
-    font-weight: 500;
-    font-size: 16px;
-    
-  }
-  .delete-icon{
-  fill:  hsl(358, 79%, 66%)
-  }
-  
-  .delete-btn:hover .delete-icon{
-  
+.delete-btn {
+  cursor: pointer;
+  color: hsl(358, 79%, 66%);
+  font-weight: 500;
+  font-size: 16px;
+}
+.delete-icon {
+  fill: hsl(358, 79%, 66%);
+}
+
+.delete-btn:hover .delete-icon {
   fill: hsl(358, 63%, 53%);
-  
-  }
-  .delete-btn:hover{
-    color: hsl(358, 63%, 53%);
+}
+.delete-btn:hover {
+  color: hsl(358, 63%, 53%);
+}
 
-  }
-  
-  .delete-btn:active{
-    color: hsl(357, 100%, 86%)
-
-  }
-  .delete-btn:active .delete-icon{
-  
-    fill:  hsl(357, 100%, 86%)
-
-  }
-.cancle-btn{
+.delete-btn:active {
+  color: hsl(357, 100%, 86%);
+}
+.delete-btn:active .delete-icon {
+  fill: hsl(357, 100%, 86%);
+}
+.cancle-btn {
   background-color: hsl(228, 3%, 31%);
   color: white;
   font-size: 20px;
-  font-weight:500;
+  font-weight: 500;
   border: 0;
-padding:10px 25px;
-border-radius: 10px;
+  padding: 10px 25px;
+  border-radius: 10px;
 }
-.cancle-btn:hover{
+.cancle-btn:hover {
   background-color: hsl(220, 3%, 21%);
-
 }
-.cancle-btn:active{
+.cancle-btn:active {
   background-color: hsl(216, 2%, 39%);
-
 }
-.confirm-btn{
-  background-color:hsl(358, 79%, 66%);
+.confirm-btn {
+  background-color: hsl(358, 79%, 66%);
   color: white;
   font-size: 20px;
-  font-weight:500;
+  font-weight: 500;
   border: 0;
-border-radius: 10px;
-padding:10px 25px;
+  border-radius: 10px;
+  padding: 10px 25px;
 }
-.confirm-btn:hover{
-  background-color:hsl(358, 76%, 58%);
-
+.confirm-btn:hover {
+  background-color: hsl(358, 76%, 58%);
 }
-.confirm-btn:active{
-  background-color:hsl(358, 79%, 72%);
-
+.confirm-btn:active {
+  background-color: hsl(358, 79%, 72%);
 }
-.modal-title{
+.modal-title {
   color: hsl(212, 24%, 26%);
-  font-size:25px
+  font-size: 25px;
 }
-.update-btn{
+.update-btn {
   width: 90px !important;
   background-color: hsl(238, 40%, 52%);
-font-weight: 600;
+  font-weight: 600;
   color: white;
+}
+.comment .second-div {
+  display: none !important;
+}
+.comment .first-div {
+  display: block !important;
+}
+
+.mid-div {
+  flex: 0 0 auto;
+  width: 91.66666667% !important;
+  max-width: 91.66666667% !important;
+  padding-right: 0;
+  padding-left: 1rem !important;
+}
+@media only screen and (max-width: 500px) {
+  .posted-date {
+    font-size: 11px;
+  }
+  .comment {
+    flex-direction: column !important;
+  }
+  .comment .second-div {
+    display: inline-block !important;
+    flex-direction: row;
+    padding: 10px 0 !important;
+  }
+  .comment .first-div {
+    display: none !important;
+  }
+  .vote-container {
+    flex-direction: row !important;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+  }
+  .option-switch-two {
+    display: inline-flex;
+    justify-content: flex-end;
+  }
+  .option-switch-one {
+    display: none;
+  }
+  .mid-div {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    padding: 10px 0 !important;
+  }
+  .delete-btn,
+  .edit-btn {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
 }

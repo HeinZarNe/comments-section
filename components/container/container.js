@@ -96,7 +96,7 @@ export default function Container() {
     fetchComments();
   };
   return (
-    <div className="comments-container d-flex  justify-content-center align-items-center py-3 flex-column">
+    <div className=" comments-container d-flex  justify-content-center align-items-center py-3 flex-column">
       {comments.map((comment) => (
         <Comment
           user={user}
